@@ -1,0 +1,134 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Title -->
+  {% if title %}
+  <title>Schkit - {{ title }}</title>
+  {% else %}
+  <title>Schkit</title>
+  {% endif %}
+
+  <!-- Required Meta Tags Always Come First -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Favicon -->
+  <link rel="shortcut icon" href="../../static/icons/favicon-96x96.png">
+
+
+  <!-- Google Fonts -->
+  <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="../../static/wallet/vendor/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="../../static/wallet/vendor/animate.css/animate.min.css">
+  <link rel="stylesheet" href="../../static/wallet/vendor/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="../../static/wallet/vendor/hs-megamenu/src/hs.megamenu.css">
+  <link rel="stylesheet" href="../../static/wallet/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+  <link rel="stylesheet" href="../../static/wallet/vendor/custombox/dist/custombox.min.css">
+  <link rel="stylesheet" href="../../static/wallet/vendor/animate.css/animate.min.css">
+
+  <!-- CSS Space Template -->
+  <link rel="stylesheet" href="../../static/wallet/css/theme.css">
+  <link rel="stylesheet" href="../../static/wallet/css/signin.css">
+  <link rel="stylesheet" href="../../static/css/theme.css">
+</head>
+
+<body>
+
+  <!-- ========== MAIN CONTENT ========== -->
+    <main class="js-validate form-signin p-5">
+      
+   
+      {% if card_holder %}
+      {% for holder in card_holder %}
+      <!-- Title -->
+      <div class="text-center mb-4">
+        <h2 class="h3 mb-0">My Balance:</h2>
+        {% if  holder.hide_balance == False %}
+          <h2>$USD ***</h2>
+          {% else %}
+          <h2>$USD ***</h2>
+        {% endif %}
+      </div>
+      <!-- End Title -->
+      {% endfor %}
+      {% endif %}
+
+    <div class="position-absolute bottom-0  right-0 max-w-50rem w-100 z-index-n1 mx-auto">
+      <img class="img-fluid" src="../../static/svg/components/abstract-shapes-3.svg" alt="Image Description">
+    </div>
+
+    <div class="text-center mb-5">
+        <img src="/media/qr_codes/qr_code.jpg" width="260">
+    </div>
+    
+    <div class="text-center mb-3">
+      <p class="text-muted">Go to <a href="{% url 'balance' %}">Wallet</a></p>
+    </div>
+
+    <!-- End Signin Social Buttons -->
+
+    <p class="small text-center text-muted mb-0">Provide by &copy; Schkit</p>
+  </main>
+  <!-- ========== END MAIN CONTENT ========== -->
+
+  <!-- JS Global Compulsory -->
+  <script src="../../static/wallet/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="../../static/wallet/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+  <script src="../../static/wallet/vendor/popper.js/dist/umd/popper.min.js"></script>
+  <script src="../../static/wallet/vendor/bootstrap/bootstrap.min.js"></script>
+
+  <!-- JS Implementing Plugins -->
+  <script src="../../static/wallet/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+
+  <!-- JS Space -->
+  <script src="../../static/wallet/js/hs.core.js"></script>
+  <script src="../../static/wallet/js/components/hs.validation.js"></script>
+  <script src="../../static/wallet/js/helpers/hs.focus-state.js"></script>
+
+  <!-- JS Global Compulsory -->
+  <script src="../../static/wallet/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="../../static/wallet/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+  <script src="../../static/wallet/vendor/popper.js/dist/umd/popper.min.js"></script>
+  <script src="../../static/wallet/vendor/bootstrap/bootstrap.min.js"></script>
+
+  <!-- JS Implementing Plugins -->
+  <script src="../../static/wallet/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+  <script src="../../static/wallet/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+  <script src="../../static/wallet/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="../../static/wallet/vendor/custombox/dist/custombox.min.js"></script>
+  <script src="../../static/wallet/vendor/custombox/dist/custombox.legacy.min.js"></script>
+
+  <!-- JS Space -->
+  <script src="../../static/wallet/js/hs.core.js"></script>
+  <script src="../../static/wallet/js/components/hs.header.js"></script>
+  <script src="../../static/wallet/js/components/hs.unfold.js"></script>
+  <script src="../../static/wallet/js/components/hs.validation.js"></script>
+  <script src="../../static/wallet/js/helpers/hs.focus-state.js"></script>
+  <script src="../../static/wallet/js/components/hs.malihu-scrollbar.js"></script>
+  <script src="../../static/wallet/js/components/hs.modal-window.js"></script>
+  <script src="../../static/wallet/js/components/hs.show-animation.js"></script>
+  <script src="../../static/wallet/js/components/hs.go-to.js"></script>
+
+
+  <!-- JS Plugins Init. -->
+  <script>
+    $(document).on('ready', function () {
+      // initialization of forms
+      $.HSCore.helpers.HSFocusState.init();
+
+      // initialization of form validation
+      $.HSCore.components.HSValidation.init('.js-validate');
+    });
+  </script>
+</body>
+</html>
+
+
+
+

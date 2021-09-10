@@ -1,0 +1,56 @@
+/*------------------------------------
+  Slick
+------------------------------------*/
+
+.u-slick {
+	position: relative;
+}
+
+// Cursor pointer class
+.u-slick--cursor-pointer {
+  .slick-slide {
+    cursor: pointer;
+  }
+}
+
+// Disable transform effect
+.u-slick--transform-off {
+  &.slick-transform-off .slick-track,
+  .slick-track {
+		transform: none !important;
+	}
+}
+
+@include media-breakpoint-up(lg) {
+  .u-slick--transform-off-lg {
+    &.slick-transform-off .slick-track {
+      transform: none !important;
+    }
+  }
+}
+
+.u-slick--center-mode-right {
+  margin-right: calc(-1px - ((100vw - 100%) / 2) + 10px) !important;
+
+  .slick-list {
+    padding-left: 0 !important;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .slick-list {
+    padding-right: 0 !important;
+  }
+}
+
+.u-slick--blurex {
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 135px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1.0));
+  }
+}

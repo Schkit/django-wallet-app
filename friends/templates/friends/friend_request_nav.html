@@ -1,0 +1,148 @@
+        <!-- Navbar -->
+          <div class="navbar-expand-lg navbar-expand-lg-collapse-block navbar-light">
+            <div id="sidebarNav" class="collapse navbar-collapse navbar-vertical">
+              <!-- Card -->
+              <div class="card mb-5">
+                <div class="card-body">
+                  <!-- Avatar -->
+                  <div class="d-none d-lg-block text-center mb-5">
+                    <div class="avatar avatar-xxl avatar-circle mb-3">
+                      <img class="avatar-img" src="{{user.profile_image.url}}">
+                      <img class="avatar-status avatar-lg-status" src="../../static/svg/illustrations/top-vendor.svg" alt="Image Description" data-toggle="tooltip" data-placement="top" title="Verified user">
+                    </div>
+
+                    <h4 class="card-title">{{username}}</h4>
+                    <p class="card-text font-size-1">{{email}}</p>
+                  </div>
+                  <!-- End Avatar -->
+                {% if request.user.is_authenticated %}
+                  <h6 class="text-cap small">Account</h6>
+                  <!-- List -->
+                  <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2 mb-4">
+                    <!-- THEM to YOU -->
+                    {% if request_sent == 2  %}
+                    <li class="nav-item">
+                        <a href=""> 
+                        <button class="btn btn-sm btn-danger" id="id_cancel_{{id}}" class="decline-friend-request material-icons p-1" onclick='triggerDeclineFriendRequest("{{pending_friend_request_id}}")'>
+                          decline
+                        </button>
+                      </a>
+
+                    <a href="">
+                      <button class="btn btn-sm btn-primary">
+                      <span id="id_confirm_{{id}}" class="confirm-friend-request material-icons p-1" onclick='triggerAcceptFriendRequest("{{pending_friend_request_id}}")'>
+                        <i class="fas fa-user-plus">
+                        </i>
+                        check
+                      </span>
+                      </button>
+                     </a>
+
+                    </li>
+                    {% endif %}
+                    <!-- End -->
+
+                    {% if is_friend == False and is_self == False %}
+                    <!-- Cancel Friend Request / Send Friend Request / Remove Friend -->
+
+                    <li class="nav-item">
+                      {% if request_sent == 3 %}
+                      <!-- You sent them a request -->
+                      <a class="nav-link" id="id_cancel_friend_request_btn"> 
+                        <button type="submit" class="btn btn-sm btn-danger" id="id_cancel_friend_request_btn">
+                          <i class="fas fa-power-off">
+                          </i>
+                          Cancel Request
+                        </button>
+                      </a>
+                      {% endif %}
+                    </li>
+
+                     <li class="nav-item">
+                      {% if request_sent == 1 %}
+                      <!-- No requests have been sent -->
+                      <a class="nav-link" id="id_send_friend_request_btn">
+                        <button type="submit" class="btn btn-sm btn-primary" id="id_send_friend_request_btn">
+                        <i class="fas fa-user-plus">
+                        </i>
+                          Add Friend 
+                        </button>
+                      </a>
+                      {% endif %}
+                    </li>
+                    {% endif %}
+                    <!-- End -->
+
+                    <!-- If we friends -->
+                   {% if is_friend %}
+                     <li class="nav-item">
+                      <a class="nav-link" id="id_unfriend_btn">
+                        <button type="submit" class="btn btn-sm btn-primary" id="id_unfriend_btn" >
+                        <i class="fas fa-user">
+                        </i>
+                          UnFriend 
+                        </button>
+                      </a>
+                    </li>
+                  {% endif %}
+                  <!-- End -->
+                    
+                    <!-- Friend list link -->
+                    <li class="nav-item">
+                      <a class="nav-link" href="">
+                        <i class="fas fa-user nav-icon"></i>
+                        Friends
+                        <span class="badge badge-soft-navy badge-pill nav-link-badge">{{friends|length}}</span>
+                      </a>
+                    </li>
+                    <!-- End -->
+
+                     <!-- Friend requests -->
+                   {% if friend_requests %}
+                       <li class="nav-item">
+                        <a class="nav-link" href="{% url 'friends:friend-request' user_id=user.id %}">
+                          <i class="fas fa-user nav-icon"></i>
+                            Friend Request
+                          <span class="badge badge-soft-navy badge-pill nav-link-badge">({{friend_requests|length}})</span>
+                        </a>
+                      </li>
+                  {% endif %}
+                  <!-- End -->
+
+                    {% if is_friend %}
+                      <li class="nav-item">
+                        <a class="nav-link" onclick="createOrReturnPrivateChat('{{id}}')" href="#">
+                          <i class="fas fa-envelope nav-icon"></i>
+                            Message
+                        </a>
+                      </li>
+                    {% endif %}
+                  </ul>
+                {% endif %}
+                  <!-- End List -->
+
+
+                  <div class="d-lg-none">
+                    <div class="dropdown-divider"></div>
+
+                    <!-- List -->
+                    <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2">
+                      <li class="nav-item">
+                        <a class="nav-link text-primary" href="{% url 'profile' %}">
+                          <i class="fas fa-sign-out-alt nav-icon"></i>
+                          Back
+                        </a>
+                    
+                      </li>
+                    </ul>
+                    <!-- End List -->
+                  </div>
+                </div>
+              </div>
+              <!-- End Card -->
+            </div>
+          </div>
+          <!-- End Navbar -->
+
+        
+

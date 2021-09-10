@@ -1,0 +1,27 @@
+/*------------------------------------
+  Borders
+------------------------------------*/
+
+.rounded-pill {
+  border-radius: $border-radius-pill !important;
+}
+
+// Border Width
+.border-width-3 {
+  border-width: 3px !important;
+}
+
+// Border Colors
+.border-white-opacity-0_3 {
+  border-color: rgba($white, .3);
+}
+
+// Pseudo options
+.rounded-pseudo {
+  @include border-radius($border-radius);
+
+  &::before,
+  &::after {
+    @include border-radius($border-radius);
+  }
+}

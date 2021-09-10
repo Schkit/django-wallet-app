@@ -1,0 +1,198 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Title -->
+  {% if title %}
+  <title>Schkit - {{ title }}</title>
+  {% else %}
+  <title>Schkit</title>
+  {% endif %}
+
+  <!-- Required Meta Tags Always Come First -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../../static/icons/favicon-96x96.png">
+
+  <!-- Google Fonts -->
+  <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="../../static/vendor/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="../../static/wallet/vendor/animate.css/animate.min.css">
+
+  <!-- CSS Space Template -->
+  
+  <link rel="stylesheet" href="../../static/wallet/css/signin.css">
+  <link rel="stylesheet" href="../../static/css/theme.css">
+</head>
+
+<body>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="js-validate form-signin p-5">
+  <form role="form" action="" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    <!-- Logo -->
+
+
+   <!-- Card -->
+    <a class="card card-dashed" href="javascript:;" data-toggle="modal" data-target="#addNewCardModal">
+      <div class="card-body card-body-centered card-dashed-body">
+        <i class="fas fa-credit-card fa-lg mb-2"></i>
+        Add a new card
+      </div>
+    </a>
+  <!-- End Card -->
+  <br>
+
+   <div class="position-absolute bottom-0 right-0 max-w-50rem w-100 z-index-n1 mx-auto">
+    <img class="img-fluid" src="../../static/svg/components/abstract-shapes-4.svg" alt="Image Description">
+  </div>
+
+   <div class="text-center mb-3">
+      <p class="text-muted">Go to <a href="{% url 'balance' %}">Wallet</a></p>
+    </div>
+  
+  <!-- End Signin Social Buttons -->
+    <div class="text-center mb-4">
+    <p class="small text-center text-muted mb-0">Provide by &copy; Schkit</p>
+  </div>
+
+  <!-- Add New Card Modal -->
+  <div class="modal fade" id="addNewCardModal" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="addNewCardModalTitle">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <!-- Header -->
+        <div class="modal-header">
+          <h4 id="addNewCardModalTitle" class="modal-title">Add card</h4>
+          <div class="modal-close">
+            <button type="button" class="btn btn-icon btn-xs btn-ghost-secondary" data-dismiss="modal" aria-label="Close">
+              <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <!-- End Header -->
+
+        <!-- Body -->
+        <div class="modal-body">
+          <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Button Group -->
+            <div class="btn-group btn-group-toggle btn-group-segment d-flex form-group" data-toggle="buttons">
+              <label class="btn btn-sm flex-fill focus active">
+                <input type="radio" name="options" id="option1" checked> Credit or Debit card
+              </label>
+              <label class="btn btn-sm flex-fill disabled">
+                <input type="radio" name="options" id="option2"> PayPal <span class="badge badge-soft-primary">Coming soon</span>
+              </label>
+            </div>
+            <!-- End Button Group -->
+
+            <!-- Form Group -->
+            <div class="form-group">
+              <label for="cardNumberLabel" class="input-label">Card number</label>
+              <!-- <input type="text" class="js-masked-input form-control" name="cardNumber" id="cardNumberLabel" placeholder="xxxx xxxx xxxx xxxx" aria-label="xxxx xxxx xxxx xxxx"
+                     data-hs-mask-options='{
+                      "template": "0000 0000 0000 0000"
+                    }'> -->
+              {{ form.card_number }}
+            </div>
+            <!-- End Form Group -->
+
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- Form Group -->
+                <div class="form-group">
+                  <label for="expirationDateLabel" class="input-label">Expiration date</label>
+                  <!-- <input type="text" class="js-masked-input form-control" name="expirationDate" id="expirationDateLabel" placeholder="xx/xxxx" aria-label="xx/xxxx"
+                         data-hs-mask-options='{
+                          "template": "00/0000"
+                        }'> -->
+                  {{ form.expiration_date  }}
+                </div>
+                <!-- End Form Group -->
+              </div>
+
+              <div class="col-sm-6">
+                <!-- Form Group -->
+                <div class="form-group">
+                  <label for="securityCodeLabel" class="input-label">CVV Code <i class="far fa-question-circle text-body ml-1" data-toggle="tooltip" data-placement="top" title="A 3 - digit number, typically printed on the back of a card."></i></label>
+                  <!-- <input type="text" class="js-masked-input form-control" name="securityCode" id="securityCodeLabel" placeholder="xxx" aria-label="xxx"
+                         data-hs-mask-options='{
+                          "template": "000"
+                        }'> -->
+                    {{ form.cvv_number }}
+                </div>
+                <!-- End Form Group -->
+              </div>
+            </div>
+            <!-- End Row -->
+
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-white mr-2" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Add Card</button>
+            </div>
+          </form>
+        </div>
+        <!-- End Body -->
+      </div>
+    </div>
+  </div>
+  <!-- End Add New Card Modal -->
+  </form>
+</main>
+  <!-- ========== END MAIN CONTENT ========== -->
+
+  <!-- JS Global Compulsory -->
+  <script src="../../static/wallet/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="../../static/wallet/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+  <script src="../../static/wallet/vendor/popper.js/dist/umd/popper.min.js"></script>
+  <script src="../../static/wallet/vendor/bootstrap/bootstrap.min.js"></script>
+
+  <!-- JS Implementing Plugins -->
+  <script src="../../static/wallet/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+
+  <!-- JS Space -->
+  <script src="../../static/wallet/js/hs.core.js"></script>
+  <script src="../../static/wallet/js/components/hs.validation.js"></script>
+  <script src="../../static/wallet/js/helpers/hs.focus-state.js"></script>
+
+  <!-- JS Plugins Init. -->
+  <script>
+    $(document).on('ready', function () {
+      // initialization of forms
+      $.HSCore.helpers.HSFocusState.init();
+
+      // initialization of form validation
+      $.HSCore.components.HSValidation.init('.js-validate');
+    });
+  </script>
+  <script>
+            /* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
+    //We start indexing at one because CSRF_token is considered and input field 
+     */
+
+    //Query All input fields
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder='Account number..';
+    form_fields[2].placeholder='Expiration..';
+    form_fields[3].placeholder='CVV..';
+
+
+    for (var field in form_fields){ 
+      form_fields[field].className += ' form-control'
+    }
+  </script>
+</body>
+</html>
+
+
+
+

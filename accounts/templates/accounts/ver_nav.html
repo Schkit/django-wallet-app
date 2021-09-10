@@ -1,0 +1,115 @@
+<!-- Navbar -->
+          <div class="navbar-expand-lg navbar-expand-lg-collapse-block navbar-light">
+            <div id="sidebarNav" class="collapse navbar-collapse navbar-vertical">
+              <!-- Card -->
+              <div class="card mb-5">
+                <div class="card-body">
+                  <!-- Avatar -->
+                  <div class="d-none d-lg-block text-center mb-5">
+                    <div class="avatar avatar-xxl avatar-circle mb-3">
+                      <img class="avatar-img" src="{{ user.profile_image.url }}">
+                      <img class="avatar-status avatar-lg-status" src="../../static/svg/illustrations/top-vendor.svg" alt="Image Description" data-toggle="tooltip" data-placement="top" title="Verified user">
+                    </div>
+
+                    <h4 class="card-title">{{ user.username }}</h4>
+                    <p class="card-text font-size-1">{{ user.email }}</p>
+                  </div>
+                  <!-- End Avatar -->
+
+                  <h6 class="text-cap small">Account</h6>
+
+                  <!-- List -->
+                  <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2 mb-4">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="{% url 'profile' %}">
+                        <i class="fas fa-user nav-icon"></i>
+                        Personal info
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <i class="fas fa-envelope nav-icon"></i>
+                        Public Chat
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'password-change' %}">
+                        <i class="fas fa-shield-alt nav-icon"></i>
+                        Login &amp; security
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <i class="fas fa-bell nav-icon"></i>
+                        Notifications
+                        <span class="badge badge-soft-navy badge-pill nav-link-badge">1</span>
+                      </a>
+                    </li>
+                  </ul>
+                  <!-- End List -->
+
+                  <h6 class="text-cap small">Wallet</h6>
+
+                  <!-- List -->
+                  <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'balance' %}">
+                        <i class="fas fa-wallet nav-icon"></i>
+
+                        Balance
+                        {% if holder.hide_balance %}
+                        <span class="badge badge-soft-dark badge-pill nav-link-badge">*** $USD</span>
+                        {% else %}
+                          <span class="badge badge-soft-dark badge-pill nav-link-badge">{{holder.balance}} $USD</span>
+                        {% endif %}
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ holder.get_absolute_url }}">
+                        <i class="fas fa-cogs nav-icon"></i>
+                        holder Setting
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ card.get_absolute_url }}">
+                        <i class="fas fa-credit-card nav-icon"></i>
+                        Bank Card
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'transfer' %}">
+                        <i class="fas fa-exchange-alt nav-icon"></i>
+                        Transfer
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'search' %}">
+                        <i class="fas fa-users nav-icon"></i> 
+                        Users
+                      </a>
+                    </li>
+                  </ul>
+                  <!-- End List -->
+
+                  <div class="d-lg-none">
+                    <div class="dropdown-divider"></div>
+
+                    <!-- List -->
+                    <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2">
+                      <li class="nav-item">
+                        {% if user.is_authenticated %}
+                        <a class="nav-link text-primary" href="{% url 'sign-out' %}">
+                          <i class="fas fa-sign-out-alt nav-icon"></i>
+                          Log out
+                        </a>
+                        {% endif %}
+                      </li>
+                    </ul>
+                    <!-- End List -->
+                  </div>
+                </div>
+              </div>
+              <!-- End Card -->
+            </div>
+          </div>
+          <!-- End Navbar -->
